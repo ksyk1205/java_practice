@@ -116,8 +116,116 @@ public class ch03 {
 		//max = a>b?a:b	
 		System.out.println("큰 값은 :" +max);
 		
+		//문제 3-10. 2개의 정숫값을 읽어서 두 값의 차를 표시
+		System.out.println("정수 a :");
+		a = scan.nextInt();
+		System.out.println("정수 b :");
+		b = scan.nextInt();
+		
+		int tot;
+		if(a>b) {
+			tot = a-b;
+		}else {
+			tot=b-a;
+		}
+		System.out.println("두 정수의 차는 "+tot);
+		
+		//문제 3-11. 2개의 정숫값 차이가 10이하인경우와 아닌경우 표시
+		System.out.println("정수 A :");
+		A = scan.nextInt();
+		System.out.println("정수 B :");
+		B = scan.nextInt();
+		
+		tot = A>B ? A-B : B-A;
+		
+		if(tot<=10) {
+			System.out.println("A와B의 차는 10 이하입니다.");
+		}else {
+			System.out.println("A와B의 차은 10 이상입니다.");
+		}
+		
+		//문제 3-12.3개의 정수 중 최솟값을 구하기
+		
+		System.out.println("정수 a :");
+		a = scan.nextInt();
+		System.out.println("정수 b :");
+		b = scan.nextInt();
+		System.out.println("정수 c :");
+		int c = scan.nextInt();
+		
+		int min = A;
+		if(A>B)
+			min = B;
+		else if( A>c )
+			min = c ;
+		
+		System.out.println("3개의 변수 중 최솟값은 " + min);
+		
+		//문제  3-13. 3개의 정수 중 중앙 값 구하기
+		System.out.println("정수 a :");
+		a = scan.nextInt();
+		System.out.println("정수 b :");
+		b = scan.nextInt();
+		System.out.println("정수 c :");
+		c = scan.nextInt();
+		
+		int cen  = 0;
 		
 		
+		if(a>b) {
+            if(b>c) {
+               cen = b ;
+            }else if(a>c){
+               cen = c;
+            }else {
+               cen = a;
+            }
+         }else if(a>c){ 
+           if(b<=c) {
+              cen = c;
+           }
+         }else if(b>c) {
+        	 cen = b;
+         }else {
+        	 cen = c;
+         }
+		 
+		System.out.println("중간 값은" + cen);
+		
+		
+		//뮨제  3- 14 .두 정숫값 중 작은 값과 큰값을 구해서 표시
+		System.out.println("정수 a :");
+		a = scan.nextInt();
+		System.out.println("정수 b :");
+		b = scan.nextInt();
+		
+		if(a==b)
+			System.out.println("정수 a 와 b의 값은 같습니다.");
+		else {
+			if(a>b) {
+				min = b;
+				max = a;
+			}else {
+				min = a;
+				max = b;
+			}
+			System.out.println("최솟값 : " + min);
+			System.out.println("최댓값 : " + max);
+		}
+		
+		//문제 3-15. 두 정숫값을 내림차순(큰 순)으로 표시
+		if( a > b) {
+			System.out.println(a+" > "+b);
+		}else {
+			System.out.println(b+" > "+a);
+		}
+		
+		//문제 3-16. 두 정숫값을 오름차순(작은 순)으로 표시
+		if( a > b) {
+			System.out.println(b+" > "+a);
+		}else {
+			System.out.println(a+" > "+b);  
+		} 
 		
 		
 	}
