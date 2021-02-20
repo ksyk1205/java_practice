@@ -1,5 +1,6 @@
 package java_practice;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class ch03 {
@@ -220,14 +221,82 @@ public class ch03 {
 			System.out.println(b+" > "+a);
 		}
 		
-		//문제 3-16. 두 정숫값을 오름차순(작은 순)으로 표시
-		if( a > b) {
-			System.out.println(b+" > "+a);
-		}else {
-			System.out.println(a+" > "+b);  
+		//문제 3-16. 세 정숫값을 오름차순(작은 순)으로 표시
+		System.out.println("정수 a :");
+		a = scan.nextInt();
+		System.out.println("정수 b :");
+		b = scan.nextInt();
+		System.out.println("정수 c :");
+		c = scan.nextInt();
+		
+		//a<b<c
+		if(a>b) {
+			int t = a;
+				a = b;
+				b = t;
+		}
+		
+		if(b>c) {
+			int t = b;
+				c = b;
+				b = t;
+		}
+		
+		if(a>b) {
+			int t = a;
+				a = b;
+				b = t;
+		}
+		System.out.println("a<b<c 가 되도록 정렬 -> "+ a + "<"+ b+"<"+c);
+		
+		//문제 3-17. //난수를 생성하여 0-가위 , 1- 바위 , 2-보
+		Random ran = new Random();
+		System.out.println("가위~바위~보~!");
+		
+		int R = ran.nextInt(3);//0~2
+		
+		switch(R){
+			case 0 : {
+				System.out.println("가위");
+				break;
+			}
+			case 1 : {
+				System.out.println("바위");
+				break;				
+			}
+			case 2 : {
+				System.out.println("보");
+				break;
+			}
+		}
+		//문제 1-18. 월을 1~12을 표시 
+		System.out.println("몇 월입니까?");
+		int month = scan.nextInt();
+		 
+		switch(month){
+			case 3: 
+			case 4: 
+			case 5: 
+				System.out.println("봄");
+				break;				
+			case 6 : 
+			case 7: 
+			case 8: 
+				System.out.println("여름");
+				break;
+			case 9 : 
+			case 10: 
+			case 11: 
+				System.out.println("가을");
+				break;
+			
+			case 12 : 
+			case 1: 
+			case 2: 
+				System.out.println("겨울");
+				break;
+			default : System.out.println("그런 월은 없습니다."); break;
 		} 
-		
-		
 	}
 	
 
