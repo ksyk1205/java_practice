@@ -60,7 +60,7 @@ public class ch04 {
 		if(a>b) {
 			int t = a;
 				b = a;
-				a = t;
+				a = t; 
 		}
 		
 		System.out.println("작은 순서대로" +a +" < "+b);
