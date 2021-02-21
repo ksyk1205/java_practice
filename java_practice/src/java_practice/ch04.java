@@ -63,7 +63,7 @@ public class ch04 {
 				a = t; 
 		}
 		
-		System.out.println("작은 순서대로" +a +" < "+b);
+		System.out.println("작은 순서대로" +a +" < "+b); 
 		
 
 	}
