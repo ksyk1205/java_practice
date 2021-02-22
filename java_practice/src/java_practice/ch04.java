@@ -65,6 +65,137 @@ public class ch04 {
 		
 		System.out.println("작은 순서대로" +a +" < "+b); 
 		
+		//문제 4-5.입력받은 정숫값을 0까지 카운트다운 표시
+		System.out.println("카운드다운 !!!!!!!!!!!");
+		
+		do {
+			System.out.println("양의 정숫값 : ");
+			x = stdIn.nextInt(); 
+			
+		}while(x <= 0);
+		//do문 종료  시 x는 반드시 양의 값
+		
+		while(x>=0)
+			System.out.println(x--);
+			// x-- x값을 표시한 뒤 감소 / --x x값을 감소한 뒤 표시 
+			System.out.println("x의 값이 "+ x +"이 됐습니다.");
+			
+		//문제 4-6. 입력한 값의 개수만큼 '*'를 표시(마지막에는 줄바꿈 문자출력 / 읽은 값이 1이하이면 줄바꿈 표시 X
+		System.out.println("*를 몇개 표시할까요~?");
+		x=stdIn.nextInt();
+		
+		if(x > 0) {
+			 int i = 0;
+			 while(i<x) {
+				 System.out.print("*");
+				 i++;
+			 }
+			System.out.println();
+			
+		}
+		
+		//문제 4-7. 읽은 개수만큼 *와 +를 교대로 표시
+		System.out.println("몇개를 표시할까요?(*,+)");
+		x=stdIn.nextInt();
+		
+		if(x > 0) {
+			 int i = 0;
+			 while(i<x) {
+				 if(i%2 == 0) {
+					 System.out.print("*");
+				 }else {
+					 System.out.print("+");
+				 }
+				 
+				 i++;
+			 }
+			System.out.println();
+			
+		}
+		
+		//문제 4-8. 양의정숫값을 읽어서 자릿수표시
+		System.out.println("양의 정숫값의 자릿수를 표시합니다.");
+
+		//양의 정수 입력받기.
+		do {
+			System.out.println("양의 정숫값 :");
+			x=stdIn.nextInt();
+		}while( x <= 0 );
+		
+		int digit = 0 ;
+		while(x>0) {
+			digit++;
+			x/=10;
+		}
+		System.out.println("입력한 숫자는 "+digit+"자리입니다.");
+		
+		//문제 4-9. 양의 정숫값 n을읽어서 1부터 n까지의 곱을 구하시오.
+		//양의 정수 입력받기.
+		int n;
+		do {
+			System.out.println("양의 정숫값 :");
+			n=stdIn.nextInt();
+		}while( n <= 0 );
+		
+		int factorial = 1;
+		int i = 1;
+		
+		while(i <= n) {
+			factorial *= i;
+			i++;
+		}
+		System.out.println("1부터"+n+"까지의 곱 : "+factorial);
+				
+		//문제 4-10. 읽은 개수만큼 *표시 (for문)
+		System.out.println("몇개의 *를 표시할까요~?");
+		n=stdIn.nextInt();
+		
+		if(n>0) {
+			for(int t=0; t<n; t++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+		
+		//문제  4-11. 양의 정숫값을 0까지 카운트다운(for문)
+		System.out.println("카운트다운 !_!");
+		do {
+			System.out.println("양의 정숫값을 입력하세요.");
+			n=stdIn.nextInt();
+		}while(n>0);
+		
+		for(; x>=0; x--) {
+			System.out.println(x);
+		}
+		
+		//문제 4-12. 앞 문제와 반대로 0부터 카운트업
+		System.out.println("카운트업@_@");
+		do {
+			System.out.println("양의 정숫값을 입력하세요.");
+			n=stdIn.nextInt();
+		}while(n>0);
+		
+		for(int c=0; c<=n; c++) {
+			System.out.println(c);
+		}
+		
+		//문제 4-13. 1부터 n까지 합(for문)
+		System.out.println("1부터 n까지 합을 구합니다.");
+		do {
+			System.out.println("n의 값");
+			n=stdIn.nextInt();
+		}while(n>0);
+		
+		int sum = 0;
+		
+		for(int c=0; c<=n ;c++) {
+			sum += c;
+		}
+		
+		System.out.println("1부터"+n+"까지의 합은 "+sum+"입니다.");
+		
+
+		
 
 	}
 
