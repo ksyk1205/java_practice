@@ -55,10 +55,11 @@ public class ch04 {
 		//문제 4-4. 2개의 정숫값을 읽어 작은것부터 순서대로 표시 
 		System.out.println("정숫값 A :");
 		int a = stdIn.nextInt();
+		System.out.println("정숫값 B :");
 		int b = stdIn.nextInt();
 		
 		if(a>b) {
-			int t = a;
+			int t = b;
 				b = a;
 				a = t; 
 		}
@@ -142,6 +143,7 @@ public class ch04 {
 		
 		while(i <= n) {
 			factorial *= i;
+			System.out.println(factorial);
 			i++;
 		}
 		System.out.println("1부터"+n+"까지의 곱 : "+factorial);
@@ -162,10 +164,10 @@ public class ch04 {
 		do {
 			System.out.println("양의 정숫값을 입력하세요.");
 			n=stdIn.nextInt();
-		}while(n>0);
+		}while(n<0);
 		
-		for(; x>=0; x--) {
-			System.out.println(x);
+		for(int z=n; z>=0; z--) {
+			System.out.println(z);
 		}
 		
 		//문제 4-12. 앞 문제와 반대로 0부터 카운트업
@@ -173,7 +175,7 @@ public class ch04 {
 		do {
 			System.out.println("양의 정숫값을 입력하세요.");
 			n=stdIn.nextInt();
-		}while(n>0);
+		}while(n<0);
 		
 		for(int c=0; c<=n; c++) {
 			System.out.println(c);
@@ -184,7 +186,7 @@ public class ch04 {
 		do {
 			System.out.println("n의 값");
 			n=stdIn.nextInt();
-		}while(n>0);
+		}while(n<0);
 		
 		int sum = 0;
 		
@@ -194,9 +196,130 @@ public class ch04 {
 		
 		System.out.println("1부터"+n+"까지의 합은 "+sum+"입니다.");
 		
-
+		//문제 4-14. 위의 문제를 계산식까지 나오도록 수정
+		System.out.println("1부터 n까지 합을 구합니다.");
+		do {
+			System.out.println("n의 값");
+			n=stdIn.nextInt();
+		}while(n<0);
 		
-
+		sum = 0;
+		
+		
+		for(int c=1; c<n ;c++) {
+			System.out.print(c+"+");
+			sum += c;
+		}
+		System.out.print(n + "=");
+		sum+=n;
+		System.out.println(sum);
+		
+		//문제 4-15. 신장별 표준 체중 대응표 표시
+		//표준체중 = (신장 - 100) x 0.9
+		System.out.println("최소 몇 cm ?");
+		int hMin = stdIn.nextInt();
+		System.out.println("최대 몇 cm ?");
+		int hMax = stdIn.nextInt();
+		System.out.println("몇 cm 단위 ?");
+		int step = stdIn.nextInt();
+		
+		System.out.println("-----신장 체중표-----");
+		
+		for(int t=hMin; t<=hMax; t+=step) {
+			System.out.println("키 :"+t +"체중 :"+(t-100)*0.9);
+		}
+		
+		//문제 4-16 읽은 개수 * 를 표시하는데 5개가 넘으면 줄바꿈을 해준다
+		System.out.println("*를 몇개 표시할까요?");
+		n= stdIn.nextInt();
+		
+		if(n>0) {
+			for(int z=0; z<n; z++) {
+				System.out.print("*");
+				if(z%5==4) {
+					System.out.println();
+				}
+			}
+			
+//			for(int z=0; z<n/5; z++)
+//				System.out.println("*****");
+//			int rest = n%5;
+//			if(rest>0) {
+//				for(int z=0; z<rest; z++)
+//					System.out.print("*");
+//			}
+			
+		}
+		System.out.println();
+		
+		//문제 4-17.입력한 정수 값의 모든 약수 표시 
+		System.out.println("정숫값");
+		n = stdIn.nextInt();
+		int count=0;
+		for(int z=1; z<=n; z++) {
+			if(n%z==0) {
+				System.out.print(z);
+				count++;
+			}
+		}
+		System.out.println("\n약수의 개수는 "+count+"개 입니다.");
+		
+		//문제 4-18. 1에서 n까지의  제곱
+		System.out.println("양수 값을 입력하세요.");
+		n = stdIn.nextInt();
+		
+		for(int z=1; z<=n; z++) {
+			System.out.println(z+"의 제곱은"+z*z+"입니다.");
+		}
+		
+		//문제 4-19. 입력한 달의 계절표시
+		System.out.println("계절을 찾습니다.");
+		retry=0;
+		do {
+			int month ;
+			do {
+				System.out.println("몇월인가요?");
+				month =stdIn.nextInt();
+			}while(month<1 || month>12);
+			
+			if(month >= 3 && month <= 5) {
+				System.out.println("봄봄봄~봄이왔네요.");
+			}else if(month >= 6 && month <= 8) {
+				System.out.println("여름여름해 :)");
+			}else if(month >= 9 && month <= 11) {
+				System.out.println("가을&_&");
+			}else if(month >= 12 && month <= 2) {
+				System.out.println("겨울*_*");
+			}
+			
+			System.out.println("다시 입력하시겠습니까? yes-1 no-2");
+			retry = stdIn.nextInt();
+		}while(retry ==1);
+		
+		
+		//문제 4-20. 정방형을표시
+		System.out.println("정방형을 표시합니다.");
+		System.out.println("단수 : ?");
+		n = stdIn.nextInt();
+		
+		for(int z = 0; z<n; z++) {
+			for(int y = 0; y<n; y++) {
+				System.out.print("X");
+			}
+			System.out.println();
+		}
+		
+		//문제 4-21. 왼쪽아래가 직각인 이등변 삼각형
+		System.out.println("왼쪽아래가  직각인 이등변 삼각형");
+		System.out.println("단수 : ?");
+		n = stdIn.nextInt();
+		
+		for(int z = 0; z<n; z++) {
+			for(int y = 0; y<z; y++) {
+				System.out.print("X");
+			}
+			System.out.println();
+		}
 	}
 
 }
