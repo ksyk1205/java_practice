@@ -288,7 +288,7 @@ public class ch04 {
 				System.out.println("여름여름해 :)");
 			}else if(month >= 9 && month <= 11) {
 				System.out.println("가을&_&");
-			}else if(month >= 12 && month <= 2) {
+			}else if(month == 12 || month == 1|| month == 2) {
 				System.out.println("겨울*_*");
 			}
 			
@@ -302,8 +302,8 @@ public class ch04 {
 		System.out.println("단수 : ?");
 		n = stdIn.nextInt();
 		
-		for(int z = 0; z<n; z++) {
-			for(int y = 0; y<n; y++) {
+		for(int z = 0; z<=n; z++) {
+			for(int y = 0; y<=n; y++) {
 				System.out.print("X");
 			}
 			System.out.println();
@@ -314,12 +314,114 @@ public class ch04 {
 		System.out.println("단수 : ?");
 		n = stdIn.nextInt();
 		
-		for(int z = 0; z<n; z++) {
-			for(int y = 0; y<z; y++) {
+		for(int z = 0; z<=n; z++) {
+			for(int y = 0; y<=z; y++) {
 				System.out.print("X");
 			}
 			System.out.println();
 		}
+		
+		System.out.println("왼쪽위가  직각인 이등변 삼각형");
+		System.out.println("단수 : ?");
+		n = stdIn.nextInt();
+
+		for (int z = 0; z < n; z++) {
+			for (int y = 0; y < z; y++) {
+				System.out.print(" ");
+			}
+			for (int p = 0; p < n - z; p++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+
+		// 문제 4-23.피라미드를 표시
+		//i행째는 (i-1)*2+1개의  *을 표시  마지막 n번째 행에는 (n-1)*2+1 개의 *을 표시 
+		System.out.println("피라미드를 만들어보아요~_~");
+		System.out.println("단수 : ?");
+		n = stdIn.nextInt();
+
+		for (int z = 1; z <= n; z++) {
+			for (int y = 1; y <= n - z; y++) {
+				System.out.print(" ");
+			}
+			for (int y = 1; y <= 2 * z - 1; y++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+		
+		
+		// 문제 4-24. n단의 숫자 피라미드를 표시 , i번째행에는 i%10을 표시
+		System.out.println("n단 피라미드를 만들어보아요~_~");
+		System.out.println("단수 : ?");
+		n = stdIn.nextInt();
+
+		for (int z = 1; z <= n; z++) {
+			for (int y = 1; y <= n - z; y++) {
+				System.out.print(" ");
+			}
+			for (int y = 1; y <= 2 * z - 1; y++) {
+				System.out.print(z%10);
+			}
+			System.out.println();
+		}
+		
+		//문제 4-25. 양의 정수를 읽어서 소수인지 판정 
+		//소수 : 2이상 n 미만인  수중 어떤 수로도 나누어지지않는 정숫값
+		System.out.println("-소수인지 판정-");
+		System.out.println("2이상의 양의 정수 : ?");
+		n = stdIn.nextInt();
+		int z;
+		for(z=1; z<=n; z++) {
+			if(n%z==0) {
+				break;		
+			}
+		}
+		if(z==n) {
+			System.out.println("소수가 맞습니다.");
+		}else {
+			System.out.println("소수가 아닙니다.");
+		}
+		
+		
+		//문제 4-26. 연속으로 읽은 정숫값들을 합계와 평균을 표시 0입력시 종료
+		System.out.println("정수의 합계와 평균");
+		System.out.println("몇개의 정수를 입력받을까요?");
+		n = stdIn.nextInt();
+		
+		sum=0;
+		for(z=0; z<n; z++) {
+			System.out.println("정수(0을 입력하면 종료)");
+			sum += stdIn.nextInt();
+			
+			if(sum == 0) 
+			break;
+		}
+		
+		System.out.println("입력한 정수의 합은 "+ sum + "입니다.");
+		if(n!=0)
+			System.out.println("입력한 정수의 평균은 "+ sum/n + "입니다.");
+		
+		//문제 4-27. 정숫값읖 읽어서 합계와 평균을 구하고 정숫값의 입력은 1,000이 넘지않도록
+		System.out.println("정수를 더합니다.");
+		System.out.print("몇개를 더할까요?");
+		n = stdIn.nextInt();
+		int t;
+		sum = 0;
+		for(i =0; i<n; i++) {
+			System.out.println("정수 :");
+			t =stdIn.nextInt();
+			if(sum+t > 1000) {
+				System.out.println("정수의 합계가 1000을 넘었습니다. 마지막 값은 무시합니다.");
+				break;
+			}
+			sum+=t;
+		}
+		System.out.println("입력한 정수의 합은 "+ sum + "입니다.");
+		if(n!=0)
+			System.out.println("입력한 정수의 평균은 "+ sum/n + "입니다.");
+		
 	}
 
 }
