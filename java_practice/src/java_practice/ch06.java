@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class ch06 {
 	//6장 배열
 	public static void main(String[] args) {
-		ArrayRand();
+		PrintArrayVariable();
 	}
 	public static void DoubleArray() {
 	//문제 6-1. 요소 수가 5이고 double인 배열	
@@ -250,15 +250,139 @@ public class ch06 {
 					for(j=0; j<i; j++)
 						if(a[j]==a[i]) break;
 					
-				}while(j>i);
+				}while(j<i);
 				
 			}
 			for (int i = 0; i < n; i++) {
 				System.out.println("a["+i+"] =" + a[i] );
 			}
 	}
-	
-	
+	public static void Shuffle() {
+	//문제 6-13. 배열의 나열 순서 섞기 
+		Random rand = new Random();
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("배열의 요소 수 는?");
+		int n = stdIn.nextInt();
+		int[] a = new int[n];
+		
+		for(int i =0; i<n; i++) {
+			System.out.println("a["+i+"] =");
+			a[i] = stdIn.nextInt();
+		}
+		
+		for(int j=0; j<n; j++) {
+			int idx1 = rand.nextInt(n);
+			int idx2 = rand.nextInt(n);
+			
+			int t =a[idx1];
+			a[idx1] = a[idx2];
+			a[idx2] = t;
+		}
+		
+		System.out.println("배열의 요소를 섞었습니다.");
+		for(int i=0; i<n; i++) {
+			System.out.println("a["+i+"] = " + a[i]);
+		}
+	}
+	public static void CopyArrayReverse() {
+	//문제 6-14. 배열의 모든 요소를 역순으로 복사해서 표시.
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("배열의 요소 수  ?");
+		int n = stdIn.nextInt();
+		int[] a = new int[n];
+		int[] b = new int[n];
+		
+		for(int i =0; i<n; i++) {
+			System.out.println("a["+i+"] =");
+			a[i] = stdIn.nextInt();
+		}
+		
+		for(int i=0; i<n; i++) {
+			b[i] = a[n-i-1];
+		}
+		System.out.println("a의 모든요소를 역순으로 복사했습니다.");
+		
+		for(int i=0; i<n; i++) {
+			System.out.println("b["+i+"] ="+b[i]);
+		}
+			
+	}
+	public static void MonthCAI() {
+	//문제 6-15. 월을 1~12의 숫자로 표시하고 해당 월의 영어단어를 입력
+		//월은 난수로 생성/학습자가 원하는동안은 계속 문제를 낼것/ 동일 월을 연속해서 표시하지말 것
+		Random rand = new Random();
+		Scanner stdIn = new Scanner(System.in);
+		String[] monthString = {"January","February","March","April","May","June","July","August",
+				"September","October","November","December"};
+		System.out.println("해당 월의 영어단어를 입력하세요.");
+		System.out.println("첫 글자는 대문자,나머지는 소문자로 입력하세요.");
+		
+		int retry; //다시한번
+		int last =-1; //이전 월
+		int month;
+		do {
+			do {
+				month = rand.nextInt(12);
+			}while(month == last);
+			last = month;
+			
+			while(true) {
+				System.out.println(month+1+"월 :");
+				String m = stdIn.next();
+				
+				if(m.equals(monthString[month])) break;
+				System.out.println("틀렸습니다.");
+			}
+			
+			System.out.println("정답입니다. 다시 한번 하시겠습니까? 1...yes , 0...No");
+			retry = stdIn.nextInt();
+		}while(retry == 1);
+		
+		
+	}
+	public static void DayCAI1() {
+	//문제 6-16. 요일을 표시하고 해당 요일의 영어단어를 입력하는 영어학습프로그램
+		//요일은 난수를 사용해서 생성/ 학습자가 원하는 만큼 반복/동일요일을 연속해서 표시 하지말것
+		Random rand = new Random();
+		Scanner stdIn = new Scanner(System.in);
+		String[] dayKorean = {"일요일","월요일","화요일","수요일","목요일","금요일","토요일"};
+		String[] dayEnglish = {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
+		
+		System.out.println("요일명을 영어 소문자로 입력하시오");
+		
+		int last = -1;
+		int day;
+		int retry;
+		
+		do {
+			do {
+				day = rand.nextInt(7);
+			}while(day == last);
+			last = day;
+			
+			while(true) {
+				System.out.println(dayKorean[day]);
+				String d = stdIn.next();
+				
+				if(d.equals(dayEnglish[day])) break;
+				
+				System.out.println("틀렸습니다.");
+			}
+			System.out.println("정답입니다. 다시 한번 하시겠습니까? 1...yes , 0...No");
+			retry = stdIn.nextInt();
+			
+		}while(retry == 1);
+		
+	}
+	public static void PrintArrayVariable() {
+	//문제 6-17. 배열 변수의 값을 표시하는 프로그램
+		int[] a = new int[5];
+		System.out.println("a ="+ a);
+		a= null;
+		System.out.println("a ="+ a);
+	}
 	
 
 }
