@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class ch06 {
 	//6장 배열
 	public static void main(String[] args) {
-		PrintArrayVariable();
+		UnevennessArray();
 	}
 	public static void DoubleArray() {
 	//문제 6-1. 요소 수가 5이고 double인 배열	
@@ -383,6 +383,100 @@ public class ch06 {
 		a= null;
 		System.out.println("a ="+ a);
 	}
-	
-
+	public static void MatrixProduct() {
+	//문제 6-18. 4행 3열의 행렬과 3행 4열의 행렬 곱하기	
+		Scanner stdIn = new Scanner(System.in);
+		int[][] a = new  int[4][3]; //4행 3열
+		int[][] b = new  int[3][4]; //3행 4열
+		int[][] c = new  int[4][4]; //a x b 를 저장할 배열
+		
+		System.out.println("a 행렬의 요소를 입력하세요.");
+		for(int i=0; i <4; i++) {
+			for(int j=0; j<3; j++) {
+				a[i][j] = stdIn.nextInt();
+			}
+		}
+		System.out.println("b 행렬의 요소를 입력하세요.");
+		for(int i=0; i <3; i++) {
+			for(int j=0; j<4; j++) {
+				b[i][j] = stdIn.nextInt();
+			}
+		}
+		for(int i=0; i <4; i++) {
+			for(int j=0; j<4; j++) {
+				 for(int k=0; k<3; k++)
+					 c[i][j] += a[i][k] * b[k][j];
+			}
+		}
+		System.out.println("행렬 a와 b의 곱");
+		for(int i=0; i <4; i++) {
+			for(int j=0; j<4; j++) {
+				System.out.printf("%5d", c[i][j]);
+			}
+			System.out.println();
+		}
+		
+	}
+	public static void PointTotalization() {
+	//문제 6-19. 6명의 두과목 점수(국어,수학) 점수로부터 과목별/학생별 평균
+		Scanner stdIn = new Scanner(System.in);
+		final int number = 6;
+		int[][] point = new int[number][2];
+		int[] sumStudent = new int[number];
+		int[] sumSubject = new int[2];
+		
+		
+		System.out.printf("%d명의 국어, 수학 점수를 입력하세요.\n",number);
+		
+		for(int i=0; i<number; i++) {
+			System.out.printf("%2d번 국어 : ", i+1);
+			point[i][0] = stdIn.nextInt();
+			System.out.print("수학");
+			point[i][1] = stdIn.nextInt();
+			
+			sumStudent[i] = point[i][0] + point[i][1];
+			sumSubject[0] += point[i][0]; //국어의 합계
+			sumSubject[1] += point[i][1]; //수학의 합계
+			
+		}
+		
+		
+		System.out.println("No. 국어    수학    평균");
+		for(int i=0; i<number; i++) {
+			System.out.printf("%2d%6d%6d%6.1f\n", i+1, point[i][0],point[i][1],(double)sumStudent[i]/2);
+		}
+		System.out.printf("평균%6.1f%6.1f\n", (double)sumSubject[0]/number ,(double)sumSubject[1]/number );
+	}
+	public static void UnevennessArray() {
+	//문제 6-20. 불규칙적인 2차원 배열 
+		Scanner stdIn = new Scanner(System.in);
+		System.out.println("불규칙한 2차원 배열을 생성합니다.");
+		System.out.println("행 수:");
+		int height = stdIn.nextInt();
+		
+		int[][] c = new int[height][];
+		
+		for(int i=0; i<c.length; i++) {
+			System.out.print(i+"행째의 열 수 :");
+			int width = stdIn.nextInt();
+			c[i] = new int[width];
+		}
+		System.out.println("각 요소의 값을 입력하세요.");
+		for(int i=0; i<c.length; i++) {
+			for(int j=0; j<c[i].length; j++) {
+				System.out.printf("c[%d][%d] :",i,j);
+				c[i][j] = stdIn.nextInt();
+			}
+			
+		}
+		System.out.println("배열c의 각 요솟값은 다음과 같습니다.");
+		for(int i=0; i<c.length; i++) {
+			for(int j=0; j<c[i].length; j++) {
+				System.out.printf("%3d",c[i][j]);
+			}
+			System.out.println();
+		}
+			
+		
+	}
 }
