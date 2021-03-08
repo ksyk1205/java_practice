@@ -1,0 +1,198 @@
+package java_practice;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class ch07 {
+	//07장 메서드 
+	static Scanner stdIn = new Scanner(System.in);	
+	static int SignOf1(int n) {
+		int sign=0;
+		
+		if(n>0) {
+			sign = 1;
+		}else if(n<0) {
+			sign = -1;
+		}else {
+			sign = 0;
+		}
+		
+		return sign;
+	}
+	
+	static int min(int a, int b, int c) {
+		int min = a;
+		if(b<min) 
+			min=b;
+		if(c<min)
+			min=c;
+		
+		return min;
+	}
+
+	static int med(int a, int b, int c) {
+		if(a>=b) {
+			if(b>=c)
+				return b;
+			else if(a>=c) {
+				return c;
+			}else {
+				return a;
+			}
+		}else if(a > c) {//a < b
+			return a;
+		}else if(b < c) {//c > a /a < b
+			return b;
+		}else {//c > a /a < b /b > c
+			return c;
+		}
+		
+		
+	}
+	static int sumUp(int x) {
+		int sum = 0;
+		for(int i=1; i<=x; i++) {
+			sum += i;
+		}
+		return sum;
+	}
+	
+	static void hello() {
+		System.out.println("안녕하세요.");
+	}
+	
+	static void printSeason(int month) {
+		//봄(3,4,5) / 여름(6,7,8) / 가을(9,10,11) / 겨울(12,1,2)
+		if(month>=3 && month<=5)
+			System.out.print("봄");
+		else if(month >=6 && month<=8) 
+			System.out.print("여름");
+		else if(month>=9 && month<=11)
+			System.out.print("가을");
+		else if(month==12 || month ==1 || month==2)
+			System.out.print("겨울");
+		/*
+		switch(month) {
+			case 3: case 4: case 5:
+				System.out.print("봄"); break;
+			case 6: case 7: case 8:
+				System.out.print("여름"); break;
+			case 9: case 10: case 11:
+				System.out.print("가을"); break;
+			case 12: case 1: case 2:
+				System.out.print("겨울"); break;
+		}*/
+	}
+	
+	static void putChar(char c,int n) {
+		while(n-- > 0)
+			System.out.print(c);
+	}
+	static void putStart(int n) {
+		putChar('*',n);
+	}
+	static int random(int max, int min) {
+		if(max<=min)
+			return min;
+		else {
+			Random rand = new Random();
+			return min + rand.nextInt(max-min+1); 
+		}
+	}
+	
+	static int readPlusInt() {
+		int x;
+		do {
+			System.out.println("양의 정숫값 : ");
+			x = stdIn.nextInt();
+		}while(x<=0);
+		return x;
+	}
+	
+	
+	public static void main(String[] args) {
+		//문제 7-1. 입력한 int형 정숫값이 음수이면 -1, 0이면 0, 양수이면 1을 반환하는 메서드를 작성하쟈.	
+		System.out.println("정수 : ");
+		int x = stdIn.nextInt();
+		
+		int s = SignOf1(x);
+		System.out.println("signOf(x)는 "+s+"입니다.");
+		
+		//문제 7-2. 3개의 int형 인수 a,b,c, 중에 최솟값을 구하는 min 메서드를 작성하자
+		System.out.println("정수 a"); int a = stdIn.nextInt();
+		System.out.println("정수 b"); int b = stdIn.nextInt();
+		System.out.println("정수 c"); int c = stdIn.nextInt();
+		
+		System.out.println("정수 a,b,c, 중에 최솟값은 "+min(a,b,c)+" 입니다.");
+		
+		//문제 7-3. 3개의 정숫값에서 중간값 구하는 med 메서드를 작성하자.
+		System.out.println("정수 a"); a = stdIn.nextInt();
+		System.out.println("정수 b"); b = stdIn.nextInt();
+		System.out.println("정수 c"); c = stdIn.nextInt();
+		
+		System.out.println("정수 a,b,c, 중에 중간값은 "+med(a,b,c)+" 입니다.");
+		
+		//문제 7-4. 1부터 n까지의 정수의 합을 구해서 반환하는 메서드
+		System.out.println(" 1부터 x까지의 합을 구하자. ");
+		do {
+			System.out.println("x의 값 : ");
+			x=stdIn.nextInt();
+		}while(x<=0);
+		
+		System.out.println("1부터 "+x+" 까지의 합은 "+sumUp(x)+" 입니다.");
+		
+		//문제 7-5.안녕하세요.라고 표시하는 hello 메서드를 작성
+		hello();
+		
+		//문제 7-6. 인수 m에 지정한 달의 계절을 표시하는 printSeason 메서드를 작성 
+		int month;
+		do {
+			System.out.print("몇월입니까?(1~12) :");
+			month = stdIn.nextInt();
+			
+		}while(month<1 || month>12);
+		
+		System.out.print(month+"월의 계절은 ");
+		printSeason(month);
+		System.out.print(" 입니다.");
+		
+		//문제 7-7. 문자 c를 n개 표시하는 putChar 메서드와 이 메서드를 내부에서 호출해서 문자 "*"를 n개 연속으로 표시하는 putStart메서드 작성하여
+		//직각삼각형을 만들자.
+		System.out.println("왼쪽 아래가 직각인 이등변 삼각형을 표시합니다.");
+		System.out.print("단수는 :");
+		int n = stdIn.nextInt();
+		for(int i=0; i<n; i++) {
+			putStart(n);
+			System.out.println();
+		}
+		
+		//문제 7-8.난수(a=<난수 =<b)를 생성해서 반환하는 random메서드를 작성  (참고, y<=x인 경우 x값을 그대로 반환
+		System.out.println("난수를 생성합니다.");
+		System.out.println("하한값 :"); x = stdIn.nextInt();
+		System.out.println("상한값 :"); int y = stdIn.nextInt();
+		
+		System.out.print("생성한 난수는 "+random(y,x)+" 입니다.");
+		
+		//문제 7-9. 양의 정숫값: 이라는 메세지에 정숫값으 ㄹ입력하면 값을 거꾸로 반환하는 readPlusInt 메서드를 작성
+		//0이나 음수(-)가 입력되면 재입력하도록 할 것
+		do {
+			n = readPlusInt();
+			
+			System.out.println("반대로 읽으면 ");
+			while(n>0) {
+				System.out.print(n%10);
+				n/=10;
+			}
+			System.out.println("입니다.");
+			
+			do {
+				System.out.println("다시한번 ? yes...1 / No...0");
+				x = stdIn.nextInt();
+			}while(x!=0 && x!=1);
+		}while(x==1);
+		
+		
+		
+	}	
+	
+}
