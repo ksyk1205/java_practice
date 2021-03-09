@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ch07 {
 	//07장 메서드 
 	static Scanner stdIn = new Scanner(System.in);	
+	static Random rand = new Random();
 	static int SignOf1(int n) {
 		int sign=0;
 		
@@ -109,6 +110,22 @@ public class ch07 {
 		return x;
 	}
 	
+	static boolean confirmRetry() {
+		int count;
+		do {
+			System.out.println("다시 한번 실행하시겠습니까? yes....1/ no....0");
+			count = stdIn.nextInt();
+		}while(count!=0 && count!=1);
+		return count ==1;
+	}
+	
+	static int pow2(int n) {
+		int pw = 1;
+		while(n-- > 0) {
+			pw*=2;
+		}
+		return pw;
+	}
 	
 	public static void main(String[] args) {
 		//문제 7-1. 입력한 int형 정숫값이 음수이면 -1, 0이면 0, 양수이면 1을 반환하는 메서드를 작성하쟈.	
@@ -191,8 +208,63 @@ public class ch07 {
 			}while(x!=0 && x!=1);
 		}while(x==1);
 		
+		//문제 7-10. 암산훈련(3개의 3자리 정수를 사용한 계산)
+		//4개릐 계산 문제 중 하나를 무작위로 출제하는 프로그램  
+		//x+y+z / x+y-z / x-y+z / x-y-z
+		System.out.println("암산 훈련!!");
+		
+		do {
+			x = 100 + rand.nextInt(900);
+			y = 100 + rand.nextInt(900);
+			int z = 100 + rand.nextInt(900);
+			
+			int pattern = rand.nextInt(4);
+			int answer = 0;
+			switch(pattern) {
+				 case 0 : answer = x+y+z ; break;
+				 case 1 : answer = x+y-z ; break;
+				 case 2 : answer = x-y+z ; break;
+				 case 3 : answer = x-y-z ; break;
+			}
+			while(true) {
+				System.out.print(x+((pattern <2 ? "+":"-"))
+						+ y + (pattern%2 ==0 ? "+":"-")
+						+ z  +" = ");
+				int k =stdIn.nextInt();
+				
+				if(k==answer)
+					break;
+				
+			}
+		}while(confirmRetry());
+		
+		//문제 7-11. 정수를 좌우로 시프트한 값이 , 정수 x2 거듭제곱 및 정수/2의 거듭제곱 과 같은지 확인하는 프로그램
+		System.out.println("정수 x 를 n비트에 시프트 합니다.");
+		System.out.println("x : "); x=stdIn.nextInt();
+		System.out.println("n : "); n=stdIn.nextInt();
+		
+		int mPower = x * pow2(n);
+		int dPower = x / pow2(n);
+		int lShift = x << n;
+		int rShift = x >> n;
+		
+		System.out.printf("[a] X x(2의 %d승)=%d\n" , n,mPower);
+		System.out.printf("[b] X /(2의 %d승)=%d\n" , n,dPower);
+		System.out.printf("[c] X << %d=%d\n",n,lShift);
+		System.out.printf("[d] X >> %d=%d\n",n,rShift);
+		
+		System.out.println("[a] 와  [c]의 값이 "+((mPower == lShift) ? "일치합니다.":"일치하지않습니다."));
+		System.out.println("[b] 와  [d]의 값이 "+((dPower == rShift) ? "일치합니다.":"일치하지않습니다."));
 		
 		
-	}	
+		//문제 7-12. 정수 x를 오른쪽으로 n비트 회전한 값을 반환하는 rRotate메서드와 왼쪽으로 n비트 회전한 값을 반환하는 lRoate 메서드를 작성
+		
+		
+			
+	}
+
+	
+
+		
 	
 }
