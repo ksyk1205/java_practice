@@ -127,6 +127,84 @@ public class ch07 {
 		return pw;
 	}
 	
+	static void printBits(int x) {
+		for(int i =31;  i>=0; i--) {
+			System.out.print((x>>>i & 1) ==1 ? '1' : '0');
+		}
+		
+	}
+	static int rRotate(int x, int n) {
+		if(n<0) 
+			return lRotate(x,-n);
+		n%=32;
+		return (n==0 ? x : (x>>>n)|(x<<(32-n)));
+		
+		
+	}
+
+	static int lRotate(int x, int n) {
+		if(n<0) 
+			return rRotate(x,-n);
+		n%=32;
+		return (n==0 ? x : (x<<n)|(x>>>(32-n)));
+	}
+	
+	static int sumOf(int[] arr) {
+		int sum=0;
+		for(int i =0 ; i<arr.length; i++) {
+			sum +=arr[i];
+		}
+		return sum;
+	}
+	
+	static void minOf(int[] a) {
+		int min = a[0];
+		for(int i=0; i<a.length; i++) {
+			if(a[i]<min) {
+				min =a[i];
+			}
+		}
+		System.out.print(min);
+		
+	}
+	
+	static int linearSearchR(int[] arrN, int key) {
+		for(int i=arrN.length; i>=0; i--) {
+			if(arrN[i] == key) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	static int linearSearch(int[] arrN, int key) {
+		for(int i=0; i<arrN.length; i++) {
+			if(arrN[i] == key) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	static void aryRmv(int[] arrX, int index) {
+		if(index>=0 && arrX.length > index ) {
+			for(int i=index; i<arrX.length-1; i++) {
+				arrX[i] = arrX[i+1];
+			}
+		}
+		
+	}
+	
+	static void aryRmv(int[] arrX, int idx, int n) {
+		if(n>0 && idx>=0 && idx+n<arrX.length) {
+			int idx2 = idx +n -1;
+			for(int i = idx; i<=idx2; i++) {
+				arrX[i]= arrX[i+n];
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		//문제 7-1. 입력한 int형 정숫값이 음수이면 -1, 0이면 0, 양수이면 1을 반환하는 메서드를 작성하쟈.	
 		System.out.println("정수 : ");
@@ -258,10 +336,122 @@ public class ch07 {
 		
 		
 		//문제 7-12. 정수 x를 오른쪽으로 n비트 회전한 값을 반환하는 rRotate메서드와 왼쪽으로 n비트 회전한 값을 반환하는 lRoate 메서드를 작성
+		System.out.println("정수 x를 n비트 회전합니다.");
+		System.out.print("x :"); x = stdIn.nextInt();
+		System.out.print("y :"); y = stdIn.nextInt();
+		
+		System.out.println("회전 전 =");
+		printBits(x);
+		System.out.println("\n오른쪽 전 =");
+		printBits(rRotate(x, n));
+		System.out.println("\n왼쪽 전 =");
+		printBits(lRotate(x, n));
+		
+		//문제 7-15. 배열 a이 가진 모든 요소의 합을 구하는 sumOf()메서드
+		System.out.println("요소 수 :");
+		int num = stdIn.nextInt();
+		
+		int[] arr = new int[num];
+		for(int i=0; i<arr.length; i++) {
+			System.out.print("x["+i+"] : ");
+			arr[i] = stdIn.nextInt();
+		}
+		
+		System.out.println("모든 요소의 합은"+sumOf(arr)+"입니다");
+		
+		//문제 7-16. 배열 a의 요소 중에서 최솟값을 구하는 minOf메서드를 작성하자.
+		//가장 키가 작은 사람과 가장 마른 사람의 체중을 구한다.
+		System.out.print("사람 수는 :");
+		int people = stdIn.nextInt();
+		
+		int[] height = new int[num];
+		int[] weight = new int[num];
+		
+		System.out.println(num+"명의 신장과 체중을 입력하자.");
+		for(int i=0; i<num; i++) {
+			System.out.println((i+1)+" 번의 신장");
+			height[num] = stdIn.nextInt();
+			System.out.println((i+1)+" 번의 몸무게");
+			weight[num] = stdIn.nextInt();
+		}
+		
+		System.out.println("가장 키가 작은 사람의 신장 :"); minOf(height);
+		System.out.println("가장 몸무게가 작은 사람의 신장 :"); minOf(weight);
 		
 		
-			
+		//문제 7-17. 배열 a로부터 key와 같은 값을 가지는 요소를 탐색하는 linearSearch 메서드와 linearSearchR 메서드를 작성하쟈
+		// 단, 키와 같은 값을 가지는 요소가 여러 개인 경우 linearSearch는 가장 앞에 위치한 요소를 찾으면 linearSearchR은 가장 뒤에 위치한 요소를 찾을 것
+		System.out.print("요소 수  :"); 
+		n = stdIn.nextInt();
+		int[] arrN = new int[n];
+		
+		for(int i=0; i<n; i++) {
+			System.out.print("arrN["+i+"]");
+			arrN[i] = stdIn.nextInt();
+		}
+		
+		System.out.print("찾는 값:");
+		int key = stdIn.nextInt();
+		
+		int idxTop = linearSearch(arrN,key);
+		int idxBtm = linearSearchR(arrN,key);
+		
+		if(idxTop == -1) {
+			System.out.println("해당 값은 배열에 존재하지 않습니다.");
+		}else if(idxTop ==  idxBtm) {
+			System.out.println("해당 값은 arrN["+idxTop+"] 에 있습니다.");
+		}else{
+			System.out.println("해당 값의 요소가 여러 개 존재합니다.");
+			System.out.println("가장 앞에 위치한 값은 arrN["+idxTop+"]에 있습니다.");
+			System.out.println("가장 뒤에 위치한 값은 arrN["+idxBtm+"]에 있습니다.");
+		}
+		
+		//뮨제 7-18.배열 a로부터 요소 a[idx]를 삭제하는 aryRmv메서드를 작성하자. void aryRmv(int[] arrX, int index)
+		//a[idx]의 삭제는 그 뒤에 있는 요소들을 앞으로 하나씩 이동해서 할 것. 이동한 후  마지막 요소는 이동하기 전의 마지막 값을 유지할 것
+		System.out.print("요소 수 ");
+		num = stdIn.nextInt();
+		int[] arrX = new int[num]; 
+		for(int i=0; i<num; i++) {
+			System.out.print("arrX["+i+"] : ");
+			arrX[i] = stdIn.nextInt();
+		}
+		System.out.print("삭제할 요소의 인덱스 : ");
+		int index = stdIn.nextInt();
+		
+		aryRmv(arrX , index);
+		
+		for(int i=0; i<num; i++) {
+			System.out.print("arrX["+i+"] : "+arrX[i]);
+		}
+		
+		//문제 7-19. 배열 a에서 요소 a[idx]부터 n개의 요소를 삭제하는 aryRmvN메서드를 작성 void aryRmv(in[] arrX, int idx, int n)
+		//삭제는 a[idx]보다 뒤에있는 모든 요소를 하나씩 앞으로 이동, 이동 대상이 아닌 요소는 기존 값을 그대로 유지
+		System.out.print("요소 수 ");
+		num = stdIn.nextInt();
+		arrX = new int[num]; 
+		for(int i=0; i<num; i++) {
+			System.out.print("arrX["+i+"] : ");
+			arrX[i] = stdIn.nextInt();
+		}
+		
+		System.out.print("삭제를 시작할 인덱스 : ");
+		int idx = stdIn.nextInt();
+		System.out.print("삭제할 요소의 수  : ");
+		n = stdIn.nextInt();
+		
+		aryRmv(arrX,idx,n);
+		
+		for(int i=0; i<num; i++) {
+			System.out.print("arrX["+i+"] : "+arrX[i]);
+		}
+		
 	}
+
+	
+
+	
+
+	
 
 	
 
