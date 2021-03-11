@@ -195,6 +195,16 @@ public class ch07 {
 		
 	}
 	
+	static void aryIns(int[] arrA, int idx, int val) {
+		if(idx >0 && idx <arrA.length) {
+			for(int i = arrA.length; i>idx; i--) {
+				arrA[i]=arrA[i-1];
+			}
+			arrA[idx] = val;
+		}
+		
+	}
+	
 	static void aryRmv(int[] arrX, int idx, int n) {
 		if(n>0 && idx>=0 && idx+n<arrX.length) {
 			int idx2 = idx +n -1;
@@ -202,6 +212,42 @@ public class ch07 {
 				arrX[i]= arrX[i+n];
 			}
 		}
+		
+	}
+	
+	static void aryExchng(int[] arrA, int[] arrB) {
+		int n = arrA.length < arrB.length ? arrA.length : arrB.length;
+		for(int i = 0;  i<n; i++ ) {
+			int t = arrA[i];
+			arrA[i] = arrB[i];
+			arrB[i] = t;
+		}
+		
+	}
+	
+	static int[] arryClone(int[] a) {
+		int[] arrc = new int[a.length];
+		for(int i=0; i<a.length; i++) {
+			arrc[i] = a[i];
+		}
+		return arrc;
+	}
+	
+	static int[] arraySrchIdx(int[] a, int n) {
+		int count=0;
+		
+		for(int i=0; i<a.length; i++) {
+			if(a[i] == n) {
+				count++;
+			}
+		}
+		int c[] = new int[count--];
+		for(int i=a.length-1; count>=0; i--) {
+			if(a[i] == n) {
+				c[count--] = i;
+			}
+		}
+		return c;
 		
 	}
 	
@@ -445,7 +491,90 @@ public class ch07 {
 			System.out.print("arrX["+i+"] : "+arrX[i]);
 		}
 		
+		//문제 7-20. 배열 a의 요소 a[idx]에 x를 삽입하는 aryIns 메서드를 작성하자. void aryIns(int[] a, int idx, int x)
+		//삽입 시에는 a[idx] ~ a[a.length-2]를 하나씩 뒤로 이동시켜야한다.
+		System.out.print("요소 수 : ");
+		num = stdIn.nextInt();
+		int[] arra = new int[num];
+		for(int i=0; i<num; i++) {
+			System.out.print("a["+i+"] : ");
+			arra[i] = stdIn.nextInt();
+		}
+		
+		System.out.print("삽일할 요소의 인덱스 : ");
+		idx = stdIn.nextInt();
+		System.out.print("삽일할 값 : ");
+		int val = stdIn.nextInt();
+		
+		aryIns(arra,idx,val);
+		
+		for(int i=0; i<num; i++) {
+			System.out.print("arrA["+i+"] : "+arra[i]);
+		}
+		
+		//문제 7-21. 배열 a와 배열 b의 전체 요솟값을 교환하는 aryExchng 메서드  void aryExchng(int[] a, int[] b)
+		//두 배열의 요소 수 가 같지않다면 작은 쪽의 배열 수에 맞추어 교환할 것
+		System.out.print("배열 a의 요소 수 : ");
+		int numA = stdIn.nextInt();
+		int[] arrA = new int[num];
+		for(int i=0; i<numA; i++) {
+			System.out.print("a["+i+"] : ");
+			arrA[i] = stdIn.nextInt();
+		}
+		System.out.print("배열 b의 요소 수 : ");
+		int numB = stdIn.nextInt();
+		int[] arrB = new int[numB];
+		for(int i=0; i<numB; i++) {
+			System.out.print("b["+i+"] : ");
+			arrB[i] = stdIn.nextInt();
+		}
+		aryExchng(arrA,arrB);
+		
+		System.out.println("배열 a와 b의 전체요소를 교환하였습니다.");
+		for(int i=0; i<numA; i++) {
+			System.out.print("a["+i+"] : "+arrA[i]);
+		}
+		for(int i=0; i<numB; i++) {
+			System.out.print("b["+i+"] : "+arrB[i]);
+		}
+		
+		//문제 7-22.배열 a와 같은 배열(요소 수가 같고 모든 요소의 값이 같은 배열)을 생성해서 반환하는 arrayClone메서드 arryClone(int [] a)
+		System.out.print("요소수 : ");
+		num = stdIn.nextInt();
+		int[] arrx = new int[num];
+		
+		for(int i=0; i<num; i++) {
+			System.out.print("a["+i+"]");
+			arrx[i] = stdIn.nextInt();
+		}
+		
+		int arry[] = arryClone(arrx);
+		System.out.println("배열을 복사해서 배열 y를 생성했습니다.");
+		for(int i=0; i<arry.length; i++) {
+			System.out.println("y["+i+"] = "+ arry[i]);
+		}
+		
+		//문제 7-23. 배열 a의 요소 중에서 값이 x인 모든 요소의 인덱스를 앞에서부터 순서대로 저장해서 반환하는 arraySrchIdx를 작성하자.
+		System.out.print("요소수 : ");
+		num = stdIn.nextInt();
+		int[] array = new int[num];
+		
+		System.out.print("탐색할 값");
+		n = stdIn.nextInt();
+		
+		int[] arryidx = arraySrchIdx(array , n);
+		
+		if(arryidx.length == 0) {
+			System.out.println("일치하는 요소가 없습니다.");
+		}else {
+			System.out.println("일치하는 요소의 인덱스");
+			for(int i=0; i<arryidx.length; i++)
+			System.out.println(arryidx[i]);
+		}
+		
 	}
+
+	
 
 	
 
