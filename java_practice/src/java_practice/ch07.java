@@ -250,6 +250,106 @@ public class ch07 {
 		return c;
 		
 	}
+	static int[] arrayRmvOf(int[] a, int idx) {
+		if(a.length-1  <idx &&  idx<0)
+			return a.clone();
+		else {
+			int[] c = new int[a.length-1];
+			for(int i=0; i<idx; i++) {
+				c[i]=a[i];
+			}
+			for(int i=idx; i<c.length; i++) {
+				c[i]=a[i+1];
+			}
+			return c;
+		}
+	}
+	
+	static int[] arrayRmvOfN(int[] a, int idx, int n) {
+		if(a.length<idx || idx<0 ||n<0) {
+			return a.clone();
+		}else {
+			int[] c = new int[a.length-n];
+			for(int i=0; i<idx; i++) {
+				c[i] = a[i];
+			}
+			for(int i=0; i<c.length; i++) {
+				c[i] = a[i+n];
+			}
+			return c;
+		}
+		
+	}
+	
+	static int[] arrayInsOf(int[] a, int idx, int n) {
+		if(a.length <idx || idx<0) {
+			return a.clone();
+		}else {
+			int[] y = new int[a.length+1];
+			for(int i=0; i<idx; i++) {
+				y[i] = a[i];
+			}
+			for(int i=idx; i<y.length; i++) {
+				y[i+1] = a[i];
+			}
+			y[idx] = n;
+			return y;
+		}
+		
+	}
+	
+	static void printMatrix(int[][] x) {
+		for(int i=0; i<x.length; i++) {
+			for(int j=0; j<x[i].length; j++) {
+				System.out.print(x[i][j]);
+			}
+			System.out.println();
+		}
+		
+	}
+
+	static boolean addMatrix(int[][] x, int[][] y, int[][] z) {
+		if(x.length != y.length || y.length != z.length ) {
+			return false;
+		}
+		for(int i=0; i<x.length; i++) {
+			if(x[i].length != y[i].length || y[i].length != z[i].length ) {
+				return false;
+			}
+		}
+		
+		for(int i=0; i<x.length; i++) {
+			for(int j=0; j<x[i].length; j++) {
+				z[i][j] = x[i][j] + y[i][j];
+			}
+		}
+		return true;
+	}
+
+	static int[][] addMatrix(int[][] x, int[][] y) {
+		int[][] z = new int[x.length][];
+		for(int i=0; i<x.length; i++) {
+			for(int j=0; j<x[i].length; j++) {
+				z[i][j] = x[i][j]+y[i][j];
+			}
+		}
+		return z;
+	}
+	static int min(int[] a) {
+		int min = a[0];
+		
+		for(int i=1; i<a.length; i++) {
+			if(a[i]<min)
+				min = a[i];
+		}
+		
+		return min;
+	}
+
+	static int min(int x, int y) {
+		return x>y ? y:x;
+	}
+	
 	
 	public static void main(String[] args) {
 		//문제 7-1. 입력한 int형 정숫값이 음수이면 -1, 0이면 0, 양수이면 1을 반환하는 메서드를 작성하쟈.	
@@ -572,12 +672,136 @@ public class ch07 {
 			System.out.println(arryidx[i]);
 		}
 		
+		//문제 7-24. 배열 a에서 요소 a[idx]를 삭제한 배열을 반환하는 arrayRmvOf를 작성하자. int[] arrayRmvOf(int[] a,int idx)
+		//삭제 a[idx]보다 뒤에있는 모든 요소 를 하나씩 앞으로 이동시킬 것
+		System.out.print("요소 수 : ");
+		num = stdIn.nextInt();
+		int[] arrayA =  new int[num];
+		for(int i=0; i<num; i++) {
+			System.out.print("a["+i+"]");
+			arrayA[i] = stdIn.nextInt();
+		}
+		System.out.print("삭제할 인덱스는 ?");
+		index = stdIn.nextInt();
+		
+		int[] arrayB = arrayRmvOf(arrayA,index);
+		
+		for(int i=0; i<arrayB.length; i++) {
+			System.out.println("b["+i+"]"+arrayB[i]);
+		}
+		
+		//문제 7-25. 배열 a에서 요소 a[idx]부터 n개 요소를 삭제한 배열을 반환하는 arrayRmvOfN메서드를 작성하자
+		//삭제a[idx] 보다 뒤에있는 요소를 n개 앞으로 이동해서 할 것.
+		System.out.print("요소 수 : ");
+		num = stdIn.nextInt();
+		int[] arryN =  new int[num];
+		for(int i=0; i<num; i++) {
+			System.out.print("a["+i+"]");
+			arryN[i] = stdIn.nextInt();
+		}
+		
+		System.out.print("삭제를 시작할 인덱스 : ");
+		idx = stdIn.nextInt();
+		System.out.print("삭제할 요소의 개수  : ");
+		n = stdIn.nextInt();
+		
+		arryN = arrayRmvOfN(arryN,idx,n);
+		
+		for(int i=0; i<arryN.length; i++) {
+			System.out.println("b["+i+"]"+arryN[i]);
+		}
+		
+		//문제 7-26. 배열 a의 요소 a[idx]에 x를 삽입해서 배열로 반환하는 arrayInsOf를 작성하자.
+		//삽입할때는 a[idx]뒤에 있는 모든 요소를 하나씩 뒤로 이동시킬 것
+		System.out.print("요소 수 : ");
+		num = stdIn.nextInt();
+		int[] arryI =  new int[num];
+		for(int i=0; i<num; i++) {
+			System.out.print("a["+i+"]");
+			arryI[i] = stdIn.nextInt();
+		}
+		
+		System.out.print("삽입할 인덱스 :");
+		idx = stdIn.nextInt();
+		System.out.print("삽입할 값 :");
+		n = stdIn.nextInt();
+		
+		arryI = arrayInsOf(arryI,idx,n);
+		
+		//문제 7-27. 행렬 x와 y의 합을 구해서 z에 저장하는 addMatrix 메서드를 작성하자  boolean addMatrix(int[][] x, int[][] y, int[][] z)
+		//3개 배열의 요소 수가 같으면 계산해서 true를 반환하고 같지않으면 계산없이 false를 반환할 것
+		int[][] arrayx = {{1,2,3},{4,5,6}};;
+		int[][] arrayy = {{6,3,4},{1,2,5}};;
+		int[][] arrayz = new int[2][3];
+		
+		if(addMatrix(arrayx,arrayy,arrayz)) {
+			System.out.println("행렬 a");
+			printMatrix(arrayx);
+			System.out.println("행렬 b");
+			printMatrix(arrayy);
+			System.out.println("행렬 c");
+			printMatrix(arrayz);
+		}
+		
+		//문제 7-28. 행렬 x와 y의 합을 저장해서 2차원 배열로 반환하는 메서드 작성  int[][] addMatrix(int[][] x, int[][] y)
+		System.out.print("행렬의 행 수 :");
+		int row = stdIn.nextInt();
+		System.out.print("행렬의 열 수 :");
+		int col = stdIn.nextInt();
+		
+		int[][] arrayX = new int[row][col];
+		int[][] arrayY = new int[row][col];
+		
+		for(int i=0; i<arrayX.length; i++) {
+			for(int j=0; j<arrayX[i].length; j++) {
+				System.out.printf("a[%d][%d]",i,j);
+				arrayX[i][j] = stdIn.nextInt();
+			}
+		}
+		for(int i=0; i<arrayY.length; i++) {
+			for(int j=0; j<arrayY[i].length; j++) {
+				System.out.printf("b[%d][%d]",i,j);
+				arrayY[i][j] = stdIn.nextInt();
+			}
+		}
+		
+		int[][] arrayZ = addMatrix(arrayX,arrayY);
+		
+	
+		System.out.println("행렬 x");
+		printMatrix(arrayX);
+		System.out.println("행렬 y");
+		printMatrix(arrayY);
+		System.out.println("행렬 z");
+		printMatrix(arrayZ);
+		
+		
+		//문제 7-30. 2개의 int형 정수 a,b의 최솟값,3개의 int형 정수 a,b,c의 최솟값, 배열 a의 최솟값을 각각 구하자.
+		System.out.print("x값 : ");
+		x = stdIn.nextInt();
+		System.out.print("y값 : ");
+		y = stdIn.nextInt();
+		System.out.print("z값 : ");
+		int z = stdIn.nextInt();
+		
+		System.out.print("배열 a의 요소 수  : ");
+		num = stdIn.nextInt();
+		int[] arrayN = new int[num];
+		for(int i=0; i<num; i++) {
+			System.out.print("a["+i+"]");
+			arrayN[i] = stdIn.nextInt(); 
+		}
+		
+		//x,y 두개의 최솟값
+		System.out.println("x,y의 최솟값은 "+min(x,y)+"입니다.");
+		//x,y,z 세개의 최솟값
+		System.out.println("x,y의 최솟값은 "+min(x,y,z)+"입니다.");
+		//배열의 최솟값
+		System.out.println("x,y의 최솟값은 "+min(arryN)+"입니다.");
+
 	}
 
 	
-
-	
-
 	
 
 	
