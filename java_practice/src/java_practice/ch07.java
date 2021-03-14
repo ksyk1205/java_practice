@@ -86,7 +86,7 @@ public class ch07 {
 	}
 	
 	static void putChar(char c,int n) {
-		while(n-- > 0)
+		while(n -- > 0)
 			System.out.print(c);
 	}
 	static void putStart(int n) {
@@ -395,24 +395,24 @@ public class ch07 {
 		
 		System.out.print(month+"월의 계절은 ");
 		printSeason(month);
-		System.out.print(" 입니다.");
+		System.out.print(" 입니다.\n");
 		
 		//문제 7-7. 문자 c를 n개 표시하는 putChar 메서드와 이 메서드를 내부에서 호출해서 문자 "*"를 n개 연속으로 표시하는 putStart메서드 작성하여
 		//직각삼각형을 만들자.
 		System.out.println("왼쪽 아래가 직각인 이등변 삼각형을 표시합니다.");
 		System.out.print("단수는 :");
 		int n = stdIn.nextInt();
-		for(int i=0; i<n; i++) {
-			putStart(n);
+		for(int i=1; i<=n; i++) {
+			putStart(i);
 			System.out.println();
-		}
+		} 
 		
 		//문제 7-8.난수(a=<난수 =<b)를 생성해서 반환하는 random메서드를 작성  (참고, y<=x인 경우 x값을 그대로 반환
 		System.out.println("난수를 생성합니다.");
 		System.out.println("하한값 :"); x = stdIn.nextInt();
 		System.out.println("상한값 :"); int y = stdIn.nextInt();
 		
-		System.out.print("생성한 난수는 "+random(y,x)+" 입니다.");
+		System.out.println("생성한 난수는 "+random(y,x)+" 입니다.");
 		
 		//문제 7-9. 양의 정숫값: 이라는 메세지에 정숫값으 ㄹ입력하면 값을 거꾸로 반환하는 readPlusInt 메서드를 작성
 		//0이나 음수(-)가 입력되면 재입력하도록 할 것
@@ -492,6 +492,7 @@ public class ch07 {
 		printBits(rRotate(x, n));
 		System.out.println("\n왼쪽 전 =");
 		printBits(lRotate(x, n));
+		System.out.println();
 		
 		//문제 7-15. 배열 a이 가진 모든 요소의 합을 구하는 sumOf()메서드
 		System.out.println("요소 수 :");
@@ -510,15 +511,15 @@ public class ch07 {
 		System.out.print("사람 수는 :");
 		int people = stdIn.nextInt();
 		
-		int[] height = new int[num];
-		int[] weight = new int[num];
+		int[] height = new int[people];
+		int[] weight = new int[people];
 		
-		System.out.println(num+"명의 신장과 체중을 입력하자.");
-		for(int i=0; i<num; i++) {
+		System.out.println(people+"명의 신장과 체중을 입력하자.");
+		for(int i=0; i<people; i++) {
 			System.out.println((i+1)+" 번의 신장");
-			height[num] = stdIn.nextInt();
+			height[people] = stdIn.nextInt();
 			System.out.println((i+1)+" 번의 몸무게");
-			weight[num] = stdIn.nextInt();
+			weight[people] = stdIn.nextInt();
 		}
 		
 		System.out.println("가장 키가 작은 사람의 신장 :"); minOf(height);
@@ -689,7 +690,7 @@ public class ch07 {
 		for(int i=0; i<arrayB.length; i++) {
 			System.out.println("b["+i+"]"+arrayB[i]);
 		}
-		
+		 
 		//문제 7-25. 배열 a에서 요소 a[idx]부터 n개 요소를 삭제한 배열을 반환하는 arrayRmvOfN메서드를 작성하자
 		//삭제a[idx] 보다 뒤에있는 요소를 n개 앞으로 이동해서 할 것.
 		System.out.print("요소 수 : ");
