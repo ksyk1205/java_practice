@@ -1,4 +1,4 @@
-package ch08;
+package ch08_1;
 
 public class human {
 	//문제 8-1.이름,신장,체줄 등을 멤버로 가지는'사람 클래스'를 작성하자

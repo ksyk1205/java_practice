@@ -1,4 +1,4 @@
-package ch08;
+package ch08_1;
 
 public class humanTester { //문ㅈㅔ 8-1
 
@@ -7,7 +7,7 @@ public class humanTester { //문ㅈㅔ 8-1
 		human seyeon = new human();
 		human seyeon2 = new human();
 		
-		//클래스형 변수로 선언한 후 변수명으로 참조하는  인스턴스를 접근할 수 있다.
+		//클래스형 변수로 선언한 후 변수명으로 참조하는 인스턴스를 접근할 수 있다.
 		seyeon.name = "세연";
 		seyeon.height = 160;
 		seyeon.weight = 50;
